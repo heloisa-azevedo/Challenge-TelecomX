@@ -1,0 +1,82 @@
+Relatório Final — Análise de Evasão de Clientes (Churn)
+
+1. Introdução
+Este projeto tem como objetivo analisar o comportamento dos clientes que cancelaram seus serviços, buscando identificar padrões e variáveis associadas à evasão. Por meio da análise de dados, pretendemos gerar insights que ajudem na criação de estratégias de retenção mais eficazes.
+
+2. Limpeza e tratamento dos dados
+Os dados utilizados foram extraídos do repositório oficial do projeto no GitHub, em formato .json. Após a importação, foram realizadas as seguintes etapas de tratamento:
+
+- Remoção de colunas aninhadas usando json_normalize para facilitar a análise.
+- Conversão de tipos de dados, transformando colunas como Churn, Partner, PhoneService, etc., para o tipo booleano (bool).
+- Correção de valores numéricos: a coluna Charges.Total foi convertida para o formato float, substituindo vírgulas por pontos e removendo espaços em branco.
+- Criação de nova coluna derivada: Contas_Diarias, que representa o valor médio diário gasto por cliente.
+- Verificações de duplicidade e consistência geral dos dados.
+
+3. Análise Exploratória de dados
+- Distribuição Geral do Churn
+Os gráficos iniciais mostram um desequilíbrio significativo entre clientes que permanecem e os que cancelam o serviço.
+- O gráfico de barras evidencia que a maioria dos clientes está marcada como True para churn, indicando evasão.
+- No gráfico de pizza, foi possível quantificar essa proporção: apenas 3,1% dos clientes não evadiram, enquanto 96,9% cancelaram os serviços.
+
+Esse cenário demonstra um forte padrão de evasão entre os clientes da base analisada.
+
+Churn por variáveis categóricas
+
+➤ Gênero:
+A análise por gênero revelou pouca diferença entre homens e mulheres em relação ao churn:
+- Entre as mulheres: 97,1% evadiram.
+- Entre os homens: 96,7% evadiram.
+
+Apesar da taxa feminina ser ligeiramente maior, a diferença é pequena e não sugere uma correlação forte entre gênero e evasão.
+
+➤ Tipo de Contrato:
+A evasão se mostrou fortemente relacionada ao tipo de contrato:
+- Clientes com contrato mensal (Month-to-month) apresentaram o maior número de cancelamentos (3.875), o que representa mais que o dobro dos contratos de dois anos (1.695) e um ano (1.473).
+
+Isso indica que clientes com contratos mais curtos estão mais propensos à evasão, possivelmente por terem mais flexibilidade para cancelar.
+
+➤ Método de Pagamento:
+A análise do método de pagamento revelou:
+- Electronic check foi o método com maior número de evasões (2.365 clientes).
+- Seguido por Mailed check (1.612), Bank transfer automática (1.544) e Cartão de crédito automático (1.522).
+
+Esse padrão pode indicar que métodos de pagamento manuais (como boleto ou cheque) estão mais associados à evasão, talvez por refletirem menor engajamento ou maior esforço por parte do cliente.
+
+➤ Tipo de Serviço de Internet:
+O tipo de internet também teve relação significativa com a evasão:
+- Clientes com Fiber optic apresentaram o maior número de churn (3.096), seguidos por DSL (2.421) e clientes sem serviço de internet (1.526).
+
+Isso pode indicar que, mesmo entre clientes com serviço mais avançado (como fibra ótica), há alta evasão, possivelmente por problemas de qualidade ou custo.
+
+Churn por variáveis numéricas
+
+➤ Total Gasto:
+O boxplot revelou que:
+- A mediana do total gasto por clientes que evadiram (True) é mais alta do que a dos clientes que permaneceram (False).
+- A distribuição dos gastos entre os que evadiram é ligeiramente mais ampla, sugerindo que clientes que gastam mais podem estar mais propensos a sair, o que é contraintuitivo e pode indicar insatisfação com o custo-benefício.
+
+➤ Tempo de Contrato:
+Os dois grupos apresentaram distribuições parecidas, mas:
+- O tempo de contrato de clientes que permaneceram é ligeiramente maior do que o dos que evadiram.
+
+Esse resultado é consistente com a expectativa de que clientes mais antigos tendem a permanecer, seja por fidelidade, costume ou programas de retenção.
+
+4. Conclusões e Insights
+A análise exploratória revelou diversos fatores associados à evasão:
+
+- Altíssima taxa de churn geral (96,9%), indicando que a retenção é um problema crítico.
+- Clientes com contratos mensais e pagamentos manuais (como boletos ou cheques) apresentaram maior propensão à evasão.
+- Usuários com pouco tempo de contrato estão mais suscetíveis ao churn.
+- Mesmo clientes com maior gasto ou com internet de fibra óptica também cancelam com frequência, o que sugere possíveis problemas de percepção de valor ou de atendimento.
+
+Esses achados mostram que a evasão não está associada apenas ao perfil do cliente, mas também à experiência e ao tipo de serviço oferecido.
+
+5. Recomendações
+Com base nas análises realizadas, recomenda-se:
+
+- Criar ações específicas para contratos mensais, como descontos progressivos, fidelização automática ou planos mais atrativos.
+- Investigar a satisfação de clientes com pagamentos por boleto/cheque e incentivar a migração para métodos automáticos.
+- Oferecer benefícios para novos clientes nos primeiros meses, reduzindo a evasão no início do ciclo de vida.
+- Revisar a experiência de clientes com internet de fibra óptica, que mesmo com um serviço considerado superior, apresentam alta taxa de churn.
+- Segmentar ações com base em tempo de contrato e valor gasto, priorizando clientes mais propensos à saída.
+
